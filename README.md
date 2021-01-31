@@ -14,4 +14,4 @@ php bin/console doctrine:schema:update --force
 
 #### 5. Register a user by /registration. It will create a user with role ROLE_USER
 
-#### 6. To update or delete feed update role of user as 'ROLE_ADMIN' in user table directly under roles column
+#### 6. To update or delete feed change role of user as 'ROLE_ADMIN' in user table directly under roles column
