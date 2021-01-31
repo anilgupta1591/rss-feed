@@ -1,0 +1,41 @@
+{# templates/list/index.html.twig #} 
+{% extends 'base.html.twig' %} {% block
+body %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card bg-light mb-3 mt-3">
+        <div class="card-body">
+          <div class="card-header">List of Feeds <a href="{{ path('feed_add') }}" class="btn btn-info float-right">Add</a></div>
+          {% if app.user != null %}
+          <table class="table">
+            <tr>
+              <th>Vendor</th>
+              <th>Link</th>
+              <th>Action</th>
+            </tr>
+            {% for key, item in feed %}
+            <tr>
+              <td>{{ item.vendor }}</td>
+              <td>{{ item.url }}</td>
+              <td>
+             {% if is_granted('ROLE_ADMIN')%} 
+               <a href="{{ path('feed_edit', { 'id': item.id }) }}" class="btn btn-info">Edit</a>
+               <a href="{{ path('feed_delete', { 'id': item.id }) }}" class="btn btn-info">Delete</a>
+             {% endif %}
+            </td>
+            </tr>
+            {% endfor %}
+          </table>
+          {% endif %}
+        </div>
+      </div>
+      {% if app.user == null %}
+      <a href="{{ path('app_login') }}" class="btn btn-info">
+        You need to login to see the list 😜😜 >></a
+      >
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
